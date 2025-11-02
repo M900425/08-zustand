@@ -14,11 +14,11 @@ export default function Modal({ children, onClose }: ModalProps) {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
-    document.body.style.overflow = "hidden"; // вимикаємо скрол
+    document.body.style.overflow = "hidden";
     window.addEventListener("keydown", handleEsc);
 
     return () => {
-      document.body.style.overflow = ""; // повертаємо скрол
+      document.body.style.overflow = "";
       window.removeEventListener("keydown", handleEsc);
     };
   }, [onClose]);

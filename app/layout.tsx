@@ -2,11 +2,26 @@ import "./globals.css";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import TanStackProvider from "../components/TanStackProvider/TanStackProvider";
+import { Roboto } from "next/font/google";
 import { ReactNode } from "react";
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-roboto",
+  display: "swap",
+});
 
 export const metadata = {
   title: "NoteHub",
-  description: "A simple and efficient note management app.",
+  description:
+    "NoteHub — простий та ефективний застосунок для керування нотатками.",
+  openGraph: {
+    title: "NoteHub",
+    description: "Простий та ефективний застосунок для керування нотатками.",
+    url: "https://notehub.app",
+    images: ["https://ac.goit.global/fullstack/react/notehub-og-meta.jpg"],
+  },
 };
 
 interface RootLayoutProps {
@@ -16,7 +31,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children, modal }: RootLayoutProps) {
   return (
-    <html lang="en">
+    <html lang="en" className={roboto.variable}>
       <body>
         <TanStackProvider>
           <Header />

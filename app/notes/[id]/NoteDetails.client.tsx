@@ -25,7 +25,7 @@ export default function NoteDetailsClient({ id }: NoteDetailsClientProps) {
 
   const close = () => router.back();
 
-  if (isLoading) return null; // нічого не рендеримо поки завантажується
+  if (isLoading) return null;
   if (error || !note) return <p>Could not load note details.</p>;
 
   return (

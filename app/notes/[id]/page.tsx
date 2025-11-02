@@ -6,13 +6,30 @@ import {
 import { fetchNoteById } from "../../../lib/api";
 import NoteDetailsClient from "./NoteDetails.client";
 
-interface NoteDetailsPageProps {
-  params: Promise<{ id: string }>;
+export async function generateMetadata({ params }: { params: { id: string } }) {
+  const note = await fetchNoteById(params.id);
+  const title = `${note.title} | NoteHub`;
+  const description = note.content
+    ? note.content.slice(0, 100) + "..."
+    : "Note details page.";
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `https://notehub.app/notes/${params.id}`,
+      images: ["https://ac.goit.global/fullstack/react/notehub-og-meta.jpg"],
+    },
+  };
 }
 
 export default async function NoteDetailsPage({
   params,
-}: NoteDetailsPageProps) {
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const { id } = await params;
   const queryClient = new QueryClient();
 
