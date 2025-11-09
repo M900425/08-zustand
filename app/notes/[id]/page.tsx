@@ -8,13 +8,14 @@ import NoteDetailsClient from "./NoteDetails.client";
 import type { Metadata } from "next";
 
 interface NoteDetailsParams {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }
 
 export async function generateMetadata({
   params,
 }: NoteDetailsParams): Promise<Metadata> {
-  const note = await fetchNoteById(params.id);
+  const { id } = await params;
+  const note = await fetchNoteById(id);
 
   const title = `${note.title} | NoteHub`;
   const description = note.content
@@ -27,7 +28,7 @@ export async function generateMetadata({
     openGraph: {
       title,
       description,
-      url: `https://notehub.app/notes/${params.id}`,
+      url: `https://notehub.app/notes/${id}`,
       images: [
         {
           url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
