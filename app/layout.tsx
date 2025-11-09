@@ -4,6 +4,7 @@ import Footer from "../components/Footer/Footer";
 import TanStackProvider from "../components/TanStackProvider/TanStackProvider";
 import { Roboto } from "next/font/google";
 import { ReactNode } from "react";
+import type { Metadata } from "next";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -12,7 +13,7 @@ const roboto = Roboto({
   display: "swap",
 });
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "NoteHub",
   description:
     "NoteHub — простий та ефективний застосунок для керування нотатками.",
@@ -20,7 +21,11 @@ export const metadata = {
     title: "NoteHub",
     description: "Простий та ефективний застосунок для керування нотатками.",
     url: "https://notehub.app",
-    images: ["https://ac.goit.global/fullstack/react/notehub-og-meta.jpg"],
+    images: [
+      {
+        url: "https://ac.goit.global/fullstack/react/notehub-og-meta.jpg",
+      },
+    ],
   },
 };
 
